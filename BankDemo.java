@@ -52,29 +52,60 @@ class ATM{
 }
 public class BankDemo{
     public static void main(String[] args){
-        
+        boolean userAuthenticated = false;
+        BankAccount acc = null;
+         ATM atm = null;
         Scanner sc = new Scanner(System.in);
+        String cust_name = "";
+         int Acc_no;
+          int balance;
+
+while(true){
+     if(userAuthenticated == false){
+        System.out.println("1.Register");
+        System.out.println("2.Login");
+        
+        int a = sc.nextInt();
+        sc.nextLine();
+        if (a == 1 ){
 
          System.out.println("Enter cust_name");
-         String cust_name = sc.nextLine();  
+         cust_name = sc.nextLine();  
          System.out.println("Enter Acc_no");
-         int Acc_no = sc.nextInt();  
+         Acc_no = sc.nextInt();  
          System.out.println("Enter balance");
-         int balance = sc.nextInt();  
+         balance = sc.nextInt();  
          sc.nextLine();
 
-        BankAccount acc = new BankAccount(balance, cust_name, Acc_no );
+        acc = new BankAccount(balance, cust_name, Acc_no );
 
         System.out.println("Welcome "+ cust_name + " your account number is " +  Acc_no +  " and your balance is "+ balance +".");
-        ATM atm = new ATM(acc);
-
+        atm = new ATM(acc);
+        userAuthenticated = true;
+        }
+     else if(a == 2){
+        System.out.println("Enter account number");
+        Acc_no = sc.nextInt();
+        if(Acc_no == Acc_no){
+            
+            userAuthenticated = true;
+        }
+     }
+    else{
+        System.out.println("Invalid Input");
+        
+    }
+    }
+     
+     
+     if (userAuthenticated == true){
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");
         System.out.println("3. Display Balance");
         System.out.println("4. EXIT");
 
    int choice;
-    do { 
+    
         // Scanner sc = new Scanner(System.in);
          System.out.println("Enter desire choice");
          choice = sc.nextInt();  
@@ -95,12 +126,18 @@ public class BankDemo{
             case 4:
                 System.out.println("Dear " +cust_name+" your latest balance is "+ acc.getBalance() );
                 System.out.println("Exiting");
+                System.exit(0);
+
                 break;   
             default:
                 System.out.println("Invalid input");
         }
-    } while(choice!=4);
-
+    
+      }
+    }
+}
 }
 
-}
+
+
+
