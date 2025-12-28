@@ -49,6 +49,32 @@ public class StudentManagementwithArrayList{
         students.add(s1);
          }
         }
+        else if(choice == 2){
+            System.out.println("Enter roll no. to delete");
+            int rno = sc.nextInt();
+            for (int i = 0 ; i < students.size(); i++){
+            if(students.get(i).rollno == rno){
+                students.remove(i);
+            }
+        }
+        }
+
+        else if(choice == 3){
+            System.out.println("Enter roll no to update");
+            int rno = sc.nextInt();
+            sc.nextLine();
+            for(int i = 0; i < students.size(); i++){
+                if(students.get(i).rollno == rno){
+                    System.out.println("Enter student name:");
+                    students.get(i).name = sc.nextLine();      
+                    System.out.println("Enter age:");
+                    students.get(i).age = sc.nextInt();
+                     sc.nextLine();
+
+                }
+
+            }
+        }
         else if(choice == 4){
         System.out.println("\nStudent list: ");
         for(Student s : students){
