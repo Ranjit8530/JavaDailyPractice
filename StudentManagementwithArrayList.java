@@ -3,15 +3,30 @@ import java.util.ArrayList;
 
 
 class Student{
-    String name;
-    int rollno;
-    int age;
+    private String name;
+    private int rollno;
+    private int age;
 
     Student(String name, int rollno, int age)
     {
     this.name = name;
     this.rollno = rollno;
     this.age = age;
+    }
+    public int getRollNo(){
+        return rollno;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setAge(int age){
+        if(age>0){
+            this.age= age;
+        }
+        else{
+            System.out.println("enter valid age");
+        }
     }
 
     void display(){
@@ -52,10 +67,18 @@ public class StudentManagementwithArrayList{
         else if(choice == 2){
             System.out.println("Enter roll no. to delete");
             int rno = sc.nextInt();
+            boolean found = false;
             for (int i = 0 ; i < students.size(); i++){
-            if(students.get(i).rollno == rno){
+            if(students.get(i).getRollNo() == rno){
                 students.remove(i);
+                System.out.println("Deleted successfully");
+                found = true;
+                break;
             }
+           
+        }
+        if(!found){
+            System.out.println("Roll not present to delete");
         }
         }
 
@@ -63,26 +86,44 @@ public class StudentManagementwithArrayList{
             System.out.println("Enter roll no to update");
             int rno = sc.nextInt();
             sc.nextLine();
+            boolean found = false; 
             for(int i = 0; i < students.size(); i++){
-                if(students.get(i).rollno == rno){
+                if(students.get(i).getRollNo() == rno){
                     System.out.println("Enter student name:");
-                    students.get(i).name = sc.nextLine();      
+                    String newName = sc.nextLine();    
+                    students.get(i).setName(newName);
+
+                         
                     System.out.println("Enter age:");
-                    students.get(i).age = sc.nextInt();
+                     int newAge = sc.nextInt();
+                    students.get(i).setAge(newAge);
+                   
                      sc.nextLine();
-
+                    found = true;
+                    break;
                 }
+                
 
+            }
+            if(!found){
+                System.out.println("Roll not present");
             }
         }
         else if(choice == 4){
+            if( students.isEmpty()){
+                System.out.println("Students not available");
+            }
+            else{
         System.out.println("\nStudent list: ");
         for(Student s : students){
             s.display();
         }
+
+        }
     }
         else if(choice == 5){
-            System.exit(0);
+            System.out.println("Exiting...");
+            break;
         }
         else{
             System.out.println("Invalid choice");
